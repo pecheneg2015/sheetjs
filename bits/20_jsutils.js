@@ -129,8 +129,19 @@ function fuzzynum(s/*:string*/)/*:number*/ {
 	if(!isNaN(v = Number(ss))) return v / wt;
 	return v;
 }
-function fuzzydate(s/*:string*/)/*:Date*/ {
+function fuzzydate(s/*:string*/, strict/*:boolean*/)/*:Date*/ {
+	var STRICT_DATE_REGEXES = [
+		/\d{4}-\d{2}-\d{2}/,
+		/\d{4}\/\d{2}\/\d{2}/,
+		/\d{2}-\d{2}-\d{4}/,
+		/\d{2}\/\d{2}\/\d{4}/,
+	];
+
 	var o = new Date(s), n = new Date(NaN);
+	if(strict) {
+		for(var i = 0; i < STRICT_DATE_REGEXES.length; ++i) if(s.match(STRICT_DATE_REGEXES[i])) return o;
+		return n;
+	}
 	var y = o.getYear(), m = o.getMonth(), d = o.getDate();
 	if(isNaN(d)) return n;
 	if(y < 0 || y > 8099) return n;
