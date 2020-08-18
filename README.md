@@ -1985,6 +1985,7 @@ default column order is determined by the first appearance of the field using
 | :---------- | :------: | :-------------------------------------------------- |
 |`header`     |          | Use specified column order (default `Object.keys`)  |
 |`dateNF`     |  FMT 14  | Use specified date format in string output          |
+|`strictDates`|  false   | Enable strict validation for dates                  |
 |`cellDates`  |  false   | Store dates as type `d` (default is `n`)            |
 |`skipHeader` |  false   | If true, do not include header row in output        |
 
